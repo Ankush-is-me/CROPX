@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#3C6B3F"/>
+  <ellipse cx="200" cy="160" rx="150" ry="110" fill="#4C8850"/>
+  <path d="M200 60 C150 90 120 140 130 200 C140 250 175 260 200 260 C225 260 260 250 270 200 C280 140 250 90 200 60 Z" fill="#5FA463" stroke="#2E5C33" stroke-width="3"/>
+  <path d="M200 70 L200 250" stroke="#2E5C33" stroke-width="3"/>
+  <path d="M200 100 L150 130 M200 100 L250 130 M200 140 L145 165 M200 140 L255 165 M200 180 L155 205 M200 180 L245 205" stroke="#2E5C33" stroke-width="2"/>
+  <!-- illustrated leaf damage: irregular chewed edges and spots -->
+  <path d="M150 130 C140 138 132 150 140 158 C148 150 152 140 150 130 Z" fill="#8A6A3A"/>
+  <circle cx="175" cy="150" r="6" fill="#8A6A3A" opacity="0.8"/>
+  <circle cx="220" cy="175" r="5" fill="#8A6A3A" opacity="0.7"/>
+  <circle cx="190" cy="200" r="7" fill="#8A6A3A" opacity="0.75"/>
+  <path d="M245 165 C255 172 260 182 252 190 C245 182 242 172 245 165 Z" fill="#8A6A3A"/>
+  <text x="200" y="285" text-anchor="middle" font-family="Manrope, sans-serif" font-size="13" fill="#EAF4EC" font-weight="700">DEMONSTRATION IMAGE — illustrated, not a photograph</text>
+</svg>

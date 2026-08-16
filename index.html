@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CROPX — Intelligence That Grows.</title>
+<meta name="description" content="CROPX is an AI-powered crop intelligence prototype helping farmers understand their fields and make better-informed decisions." />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#/" class="brand" aria-label="CROPX home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="30" height="30">
+          <path d="M20 4 C10 10 8 20 8 26 C8 33 13.5 37 20 37 C26.5 37 32 33 32 26 C32 20 30 10 20 4 Z" fill="none" stroke="currentColor" stroke-width="2.4"/>
+          <path d="M20 14 C20 20 20 30 20 35" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M20 20 C24 18 27 19 28 22 C24 23 21 23 20 20 Z" fill="currentColor"/>
+          <path d="M20 26 C16 24 13 25 12 28 C16 29 19 29 20 26 Z" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="brand-word">CROPX</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav" aria-label="Primary">
+      <a href="#/" data-route="/">Home</a>
+      <a href="#/research" data-route="/research">Research</a>
+      <a href="#/concept" data-route="/concept">How CROPX Works</a>
+      <a href="#/dashboard" data-route="/dashboard" class="requires-auth">Dashboard</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switch" id="langSwitch" title="AI response language">
+        <select id="langSelect" aria-label="AI response language">
+          <option value="en">EN</option>
+          <option value="gu">ગુજ</option>
+          <option value="hi">हिं</option>
+        </select>
+      </div>
+      <span id="authAreaLoggedOut" class="auth-area">
+        <a href="#/login" class="btn btn-ghost btn-sm">Log in</a>
+        <a href="#/register" class="btn btn-primary btn-sm">Get Started</a>
+      </span>
+      <span id="authAreaLoggedIn" class="auth-area hidden">
+        <span class="user-chip" id="userChip">👤</span>
+        <button class="btn btn-ghost btn-sm" id="logoutBtn">Log out</button>
+      </span>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main"></main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-word small">CROPX</span>
+      <p>Intelligence That Grows.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>Product</h4>
+        <a href="#/dashboard">Dashboard</a>
+        <a href="#/analyzer">Crop Analyzer</a>
+        <a href="#/assistant">CROPX AI</a>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <a href="#/research">Our Research</a>
+        <a href="#/concept">How CROPX Works</a>
+      </div>
+      <div>
+        <h4>Status</h4>
+        <p class="muted small-text">Student Social Science project prototype. Not a certified agricultural diagnostic system.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">© <span id="year"></span> CROPX — a student agri-tech prototype.</div>
+</footer>
+
+<div id="toastRoot" class="toast-root" aria-live="polite"></div>
+<div id="modalRoot" class="modal-root"></div>
+
+<script src="js/weather.js"></script>
+<script src="js/farm.js"></script>
+<script src="js/analyzer.js"></script>
+<script src="js/assistant.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
