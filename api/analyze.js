@@ -143,6 +143,7 @@ try {
 
     const data = await geminiRes.json();
     const raw = data?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') || '';
+    console.log('Gemini raw response:', raw);
 
     let parsed;
     try {
