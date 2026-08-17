@@ -115,10 +115,55 @@ try {
           }
         ],
         generationConfig: {
-          temperature: 0.3,
-          maxOutputTokens: 1000,
-          responseMimeType: 'application/json'
+  temperature: 0.2,
+  maxOutputTokens: 1500,
+  responseMimeType: 'application/json',
+  responseSchema: {
+    type: "OBJECT",
+    properties: {
+      sufficientEvidence: {
+        type: "BOOLEAN"
+      },
+      possibleIssue: {
+        type: "STRING"
+      },
+      confidence: {
+        type: "STRING",
+        enum: ["high", "moderate", "low"]
+      },
+      observedIndicators: {
+        type: "ARRAY",
+        items: {
+          type: "STRING"
         }
+      },
+      recommendedChecks: {
+        type: "ARRAY",
+        items: {
+          type: "STRING"
+        }
+      },
+      nextSteps: {
+        type: "STRING"
+      },
+      additionalImagesNeeded: {
+        type: "ARRAY",
+        items: {
+          type: "STRING"
+        }
+      }
+    },
+    required: [
+      "sufficientEvidence",
+      "possibleIssue",
+      "confidence",
+      "observedIndicators",
+      "recommendedChecks",
+      "nextSteps",
+      "additionalImagesNeeded"
+    ]
+  }
+}
       }),
       signal: controller.signal
     }
