@@ -87,30 +87,53 @@ module.exports = async (req, res) => {
     if (soilType) contextParts.push(`Soil type: ${soilType}`);
     const contextText = contextParts.length ? `Farmer-provided context:\n${contextParts.join('\n')}` : 'No additional context provided.';
 
-    const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: ANALYSIS_PROMPT }] },
-          contents: [
-            {
-              role: 'user',
-              parts: [
-                { text: contextText },
-                { inline_data: { mime_type: mimeType, data: imageBase64 } }
-              ]
-            }
-          ],
-          generationConfig: {
-            temperature: 0.3,
-            maxOutputTokens: 2000,
-            responseMimeType: 'application/json'
+   const controller = new AbortController();
+const timeout = setTimeout(() => controller.abort(), 25000);
+
+let geminiRes;
+
+try {
+  geminiRes = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${process.env.GEMINI_API_KEY}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system_instruction: { parts: [{ text: ANALYSIS_PROMPT }] },
+        contents: [
+          {
+            role: 'user',
+            parts: [
+              { text: contextText },
+              {
+                inline_data: {
+                  mime_type: mimeType,
+                  data: imageBase64
+                }
+              }
+            ]
           }
-        })
-      }
-    );
+        ],
+        generationConfig: {
+          temperature: 0.3,
+          maxOutputTokens: 1000,
+          responseMimeType: 'application/json'
+        }
+      }),
+      signal: controller.signal
+    }
+  );
+} catch (err) {
+  if (err.name === 'AbortError') {
+    console.error('Gemini request timed out');
+    return res.status(504).json({
+      error: 'CROPX AI took too long to respond. Please try again or use Demo Mode.'
+    });
+  }
+  throw err;
+} finally {
+  clearTimeout(timeout);
+}
 
     if (!geminiRes.ok) {
       const errText = await geminiRes.text().catch(() => '');
